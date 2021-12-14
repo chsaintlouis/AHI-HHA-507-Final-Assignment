@@ -6,7 +6,7 @@ Created on Tue Dec 14 14:04:02 2021
 @author: christiansaintlouis
 """
 
-import plotly.express as px
+
 import pandas as pd
 import streamlit as st
 import numpy as np
@@ -55,7 +55,7 @@ bar1 = df_hospital_2['hospital_type'].value_counts().reset_index()
 st.dataframe(bar1)
 
 st.subheader('Pie Chart of Hospital Type')
-fig = px.pie(bar1, values='hospital_type', names='index')
+fig = ff.pie(bar1, values='hospital_type', names='index')
 st.plotly_chart(fig)
 
 st.subheader('Pivot Table Capturing the Rating for All Hospitals Using the Parameters of Hospital Ownership and Hospital Type')
