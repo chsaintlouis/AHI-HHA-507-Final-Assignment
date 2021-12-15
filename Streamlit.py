@@ -146,8 +146,25 @@ st.subheader('Discharges')
 st.markdown('Total Count of Discharges from Inpatient Captured: ' )
 st.markdown( str(total_inpatient_count) )
 
+common_discharges = inpatient_ny.groupby('drg_definition')['total_discharges'].sum().reset_index()
 
 
+top10 = common_discharges.head(10)
+bottom10 = common_discharges.tail(10)
+
+
+
+st.subheader('DRGs')
+st.dataframe(common_discharges)
+
+
+col1, col2 = st.columns(2)
+
+col1.subheader('Top 10 DRGs')
+col1.dataframe(top10)
+
+col2.subheader('Bottom 10 DRGs')
+col2.dataframe(bottom10)
 
 
 
