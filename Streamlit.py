@@ -90,3 +90,37 @@ hospitals_ny_gps['lon'] = pd.to_numeric(hospitals_ny_gps['lon'])
 hospitals_ny_gps['lat'] = pd.to_numeric(hospitals_ny_gps['lat'])
 
 st.map(hospitals_ny_gps)
+
+st.subheader('Hospital Type in New York')
+bar1 = hospitals_ny['hospital_type'].value_counts().reset_index()
+st.dataframe(bar1)
+
+st.caption('Most of the hospitals in the New York area are acute care, followed by psychiatric')
+
+
+st.subheader('Visual Representation:')
+fig = px.pie(bar1, values='hospital_type', names='index')
+st.plotly_chart(fig)
+st.caption('The pie chart above shows the different hospital types in the New York Area, with 75.4% being acute care hospitals')
+
+
+
+#Timeliness of Care
+st.subheader('NY Hospitals - Timeliness of Care')
+bar2 = hospitals_ny['timeliness_of_care_national_comparison'].value_counts().reset_index()
+fig2 = px.bar(bar2, x='index', y='timeliness_of_care_national_comparison')
+st.plotly_chart(fig2)
+
+st.caption('Based on the above bar chart, we can see the majority of hospitals in the NY area fall below the national\
+        average as it relates to timeliness of care')
+
+
+st.subheader('TX Hospitals - Timeliness of Care')
+bar4 = hospitals_tx['timeliness_of_care_national_comparison'].value_counts().reset_index()
+fig5 = px.bar(bar4, x='index', y='timeliness_of_care_national_comparison')
+st.plotly_chart(fig5)
+st.caption('Based on the bar chart above, we can see the the timeliness of care data for the majority of hospitals in the Texas area is not available and for 127 hospitals is the same as the national average')
+
+
+
+
