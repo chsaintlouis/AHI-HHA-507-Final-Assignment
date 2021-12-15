@@ -66,3 +66,27 @@ hospitals_ny = df_hospital_2[df_hospital_2['state'] == 'NY']
 
 hospitals_tx = df_hospital_2[df_hospital_2['state'] == 'TX']
 
+#Bar Chart
+st.subheader('Hospital Type in New York')
+bar1 = hospitals_ny['hospital_type'].value_counts().reset_index()
+st.dataframe(bar1)
+
+st.caption('Most of the hospitals in the New York area are acute care, followed by psychiatric')
+
+
+st.subheader('Visual Representation:')
+fig = px.pie(bar1, values='hospital_type', names='index')
+st.plotly_chart(fig)
+st.caption('The pie chart above shows the different hospital types in the New York Area, with 75.4% being acute care hospitals')
+
+
+
+st.subheader('Map of NY Hospital Locations')
+
+hospitals_ny_gps = hospitals_ny['location'].str.strip('()').str.split(' ', expand=True).rename(columns={0: 'Point', 1:'lon', 2:'lat'}) 	
+hospitals_ny_gps['lon'] = hospitals_ny_gps['lon'].str.strip('(')
+hospitals_ny_gps = hospitals_ny_gps.dropna()
+hospitals_ny_gps['lon'] = pd.to_numeric(hospitals_ny_gps['lon'])
+hospitals_ny_gps['lat'] = pd.to_numeric(hospitals_ny_gps['lat'])
+
+st.map(hospitals_ny_gps)
