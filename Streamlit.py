@@ -166,6 +166,11 @@ col1.dataframe(top10)
 col2.subheader('Bottom 10 DRGs')
 col2.dataframe(bottom10)
 
+st.markdown('3. What is Stony Brooks top three and bottom three inpatient DRG service?')
+st.markdown('- As shown by the analysis above, the top 3 are heart transplant, ecmo, and t rach\
+                while the bottom 3 are trauma related, hiv related conditions') 
+
+
 
 
 
