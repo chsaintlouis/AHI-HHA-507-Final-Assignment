@@ -183,6 +183,32 @@ st.markdown('- As shown by the analysis above, the top 3 are heart transplant, e
                 while the bottom 3 are trauma related, hiv related conditions') 
 
 
+st.header('Merging datasets for SBU and CEMC Hopsital values')
+st.markdown('Merging of Datasets to show SBU Hospital values')
+df_hospital_2['provider_id'] = df_hospital_2['provider_id'].astype(str)
+df_outpatient_2['provider_id'] = df_outpatient_2['provider_id'].astype(str)
+df_merged = df_outpatient_2.merge(df_hospital_2, how='left', left_on='provider_id', right_on='provider_id')
+
+st.dataframe(df_merged)
+st.markdown('Cleaning of df_merge')
+df_merged_clean = df_merged[df_merged['hospital_name'].notna()]
+st.dataframe(df_merged_clean)
+
+st.header('Stony Brook University Hospital dataset')
+df_merged_clean_SB = df_merged_clean[df_merged_clean['hospital_name'] == 'SUNY/STONY BROOK UNIVERSITY HOSPITAL']
+df_merged_clean_SB
+
+st.header('Carolina East Medical Center')
+df_merged_clean_CEMC = df_merged_clean[df_merged_clean['hospital_name'] == 'CAROLINA EAST MEDICAL CENTER']
+df_merged_clean_CEMC
+
+st.header('Comparison of CEMC and SBU Hospitals')
+final_df_comparison = pd.concat([df_merged_clean_CEMC, df_merged_clean_SB])
+st.dataframe(final_df_comparison)
+
+st.subheader('Final Comparison Pivot Table')
+dataframe_pivot = final_df_comparison.pivot_table(index=['hospital_name','apc'],values=['average_total_payments'],aggfunc='mean')
+st.dataframe(dataframe_pivot)
 
 
 
