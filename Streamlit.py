@@ -122,7 +122,7 @@ st.plotly_chart(fig5)
 st.caption('Based on the bar chart above, we can see the the timeliness of care data for the majority of hospitals in the Texas area is not available and for 127 hospitals is the same as the national average')
 
 
-st.markdown('Hospital Q2: What is the most common hospital type in NY & and where do NY hospitals fall in regards to timeliness of care?')
+st.markdown('Hospital Q1: What is the most common hospital type in NY & and where do NY hospitals fall in regards to timeliness of care?')
 st.markdown('As shown by the analysis above, the most common hospital type in NY is acute care (144 acute care hospitals). Most of New York Hospitals are below national average in regards to timeliness of care(103 hospitals)') 
 
 #Drill down into INPATIENT and OUTPATIENT 
@@ -157,6 +157,10 @@ st.dataframe(bar7)
 st.subheader('Bar Chart of outpatient Facilities by state')
 fig7 = px.bar(bar7, x='index', y='provider_state')
 st.plotly_chart(fig7)
+
+st.markdown('Q2.  Which states have the greatest number of inpatient and outpatient facilities?')
+st.markdown('- As shown by the analysis above, Florida has the most inpatient facilities and Texas has the most outpatient facilities') 
+
 top10 = common_discharges.head(10)
 bottom10 = common_discharges.tail(10)
 
