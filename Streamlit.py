@@ -122,7 +122,7 @@ st.plotly_chart(fig5)
 st.caption('Based on the bar chart above, we can see the the timeliness of care data for the majority of hospitals in the Texas area is not available and for 127 hospitals is the same as the national average')
 
 
-st.markdown('Hospital Q: What is the most common hospital type in NY & and where do NY hospitals fall in regards to timeliness of care?')
+st.markdown('Hospital Q2: What is the most common hospital type in NY & and where do NY hospitals fall in regards to timeliness of care?')
 st.markdown('As shown by the analysis above, the most common hospital type in NY is acute care (144 acute care hospitals). Most of New York Hospitals are below national average in regards to timeliness of care(103 hospitals)') 
 
 #Drill down into INPATIENT and OUTPATIENT 
@@ -148,7 +148,15 @@ st.markdown( str(total_inpatient_count) )
 
 common_discharges = inpatient_ny.groupby('drg_definition')['total_discharges'].sum().reset_index()
 
+st.markdown('The dataframe displayed below is for the outpatient facility')
 
+st.subheader('Outpatient Facility')
+bar7 = df_outpatient_2['provider_state'].value_counts().reset_index()
+st.dataframe(bar7)
+
+st.subheader('Bar Chart of outpatient Facilities by state')
+fig7 = px.bar(bar7, x='index', y='provider_state')
+st.plotly_chart(fig7)
 top10 = common_discharges.head(10)
 bottom10 = common_discharges.tail(10)
 
@@ -166,7 +174,7 @@ col1.dataframe(top10)
 col2.subheader('Bottom 10 DRGs')
 col2.dataframe(bottom10)
 
-st.markdown('3. What is Stony Brooks top three and bottom three inpatient DRG service?')
+st.markdown('Q3. What is Stony Brooks top three and bottom three inpatient DRG service?')
 st.markdown('- As shown by the analysis above, the top 3 are heart transplant, ecmo, and t rach\
                 while the bottom 3 are trauma related, hiv related conditions') 
 
