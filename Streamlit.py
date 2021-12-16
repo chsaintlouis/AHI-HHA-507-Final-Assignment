@@ -20,17 +20,17 @@ import time
 st.title('Streamlit Final Assignment')
 st.write('chsaintlouis Dashboard!') 
 
-@st.cache
+
 def load_hospitals():
     df_hospital_2 = pd.read_csv('https://raw.githubusercontent.com/hantswilliams/AHI_STATS_507/main/Week13_Summary/output/df_hospital_2.csv')
     return df_hospital_2
 
-@st.cache
+
 def load_inatpatient():
     df_inpatient_2 = pd.read_csv('https://raw.githubusercontent.com/hantswilliams/AHI_STATS_507/main/Week13_Summary/output/df_inpatient_2.csv')
     return df_inpatient_2
 
-@st.cache
+
 def load_outpatient():
     df_outpatient_2 = pd.read_csv('https://raw.githubusercontent.com/hantswilliams/AHI_STATS_507/main/Week13_Summary/output/df_outpatient_2.csv')
     return df_outpatient_2
